@@ -5,7 +5,6 @@ from torch import norm
 import torch.nn as nn
 from timm.models.registry import register_model
 from timm.models.layers import create_conv2d, SqueezeExcite, MixedConv2d, DropPath
-from nexception_t import Network
 import functools
 
 
@@ -38,7 +37,7 @@ class SeparableConv2d(nn.Module):
         return x
 
 
-class NEXception(Network):
+class NEXception(nn.Module):
     def __init__(self, num_classes, drop_path_rate=0):
         super(NEXception, self).__init__()
 
