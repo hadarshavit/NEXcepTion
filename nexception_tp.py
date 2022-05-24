@@ -160,7 +160,7 @@ class NEXception(nn.Module):
             stages.append(NEXcepTionStage(
                 prev_chs, out_chs, stride=stride,
                 depth=depths[i], dp_rates=dp_rates[i],
-                norm_layer=norm_layer, cl_norm_layer=cl_norm_layer)
+                norm_layer=norm_layer)
             )
             prev_chs = out_chs
             # NOTE feature_info use currently assumes stage 0 == stride 1, rest are stride 2
