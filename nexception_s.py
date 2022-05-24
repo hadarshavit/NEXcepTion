@@ -48,27 +48,25 @@ class NEXception(nn.Module):
         )
         self.num_classes = num_classes
         self.downsampling_block1 = Block(96, 128, reps=2,
-                                         strides=2,
-                                         padding=3, drop_path=drop_path_rate)
-        self.downsampling_block2 = Block(128, 256, 2, strides=2 padding=3, drop_path=drop_path_rate)
+                                         strides=2, drop_path=drop_path_rate)
+        self.downsampling_block2 = Block(128, 256, 2, strides=2, drop_path=drop_path_rate)
 
-        self.downsampling_block3 = Block(256, 752, 2, strides=2, padding=3, drop_path=drop_path_rate)
+        self.downsampling_block3 = Block(256, 752, 2, strides=2, drop_path=drop_path_rate)
 
         self.middle_flow = nn.Sequential(
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
-            BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
+            BottleneckBlock(strides=1, drop_path=drop_path_rate),
         )
 
         self.exit_flow = nn.Sequential(
             Block(752, 1024, 2, 2, grow_first=False,
-                  height=19, width=19,
-                  padding=3, drop_path=drop_path_rate),
+                  drop_path=drop_path_rate),
             SeparableConv2d(1024, 1536, 3, 1, 1),
             nn.BatchNorm2d(1536),
             nn.GELU(),
