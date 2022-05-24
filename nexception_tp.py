@@ -159,7 +159,7 @@ class NEXception(nn.Module):
             out_chs = dims[i]
             stages.append(NEXcepTionStage(
                 prev_chs, out_chs, stride=stride,
-                depth=depths[i], dp_rates=dp_rates[i], ls_init_value=ls_init_value, conv_mlp=conv_mlp,
+                depth=depths[i], dp_rates=dp_rates[i], conv_mlp=conv_mlp,
                 norm_layer=norm_layer, cl_norm_layer=cl_norm_layer)
             )
             prev_chs = out_chs
