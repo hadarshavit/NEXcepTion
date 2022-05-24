@@ -49,10 +49,10 @@ class NEXception(nn.Module):
         )
         self.num_classes = num_classes
         self.downsampling_block1 = Block(96, 128, reps=2,
-                                         strides=2, padding=3, drop_path=drop_path_rate)
-        self.downsampling_block2 = Block(128, 256, 2, strides=2, padding=3, drop_path=drop_path_rate)
+                                         strides=2, drop_path=drop_path_rate)
+        self.downsampling_block2 = Block(128, 256, 2, strides=2, drop_path=drop_path_rate)
 
-        self.downsampling_block3 = Block(256, 512, 2, strides=2, padding=3, drop_path=drop_path_rate)
+        self.downsampling_block3 = Block(256, 512, 2, strides=2, drop_path=drop_path_rate)
 
         self.middle_flow = nn.Sequential(
             BottleneckBlock(strides=1, padding=3, drop_path=drop_path_rate),
