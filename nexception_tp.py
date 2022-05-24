@@ -119,7 +119,7 @@ class NEXceptionStage(nn.Module):
         return x
 
 
-class NEXcepTion(nn.Module):
+class NEXception(nn.Module):
     def __init__(
             self, in_chans=3, num_classes=1000, global_pool='avg', output_stride=32, patch_size=4,
             depths=(3, 4, 9, 3), dims=(96, 192, 384, 768),  ls_init_value=1e-6, conv_mlp=False, stem_type='patch',
