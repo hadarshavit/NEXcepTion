@@ -91,7 +91,7 @@ class BottleneckBlock(nn.Module):
         x = self.drop_path(x) + skip
         return x
 
-class NEXcepTionStage(nn.Module):
+class NEXceptionStage(nn.Module):
 
     def __init__(
             self, in_chs, out_chs, stride=2, depth=2, dp_rates=None, norm_layer=None):
