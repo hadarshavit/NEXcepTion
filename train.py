@@ -378,7 +378,7 @@ def main():
         model = NEXception(args.num_classes, args.drop_path)
     elif args.model == 'nexception-tp':
         from nexception_tp import NEXception
-        model = NEXception(args.num_classes, args.drop_path)
+        model = NEXception(num_classes=args.num_classes, drop_path_rate=args.drop_path)
     elif args.model == 'nexception-s':
         from nexception_s import NEXception
         model = NEXception(args.num_classes, args.drop_path)
