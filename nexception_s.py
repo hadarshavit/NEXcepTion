@@ -98,17 +98,14 @@ class BottleneckBlock(nn.Module):
 
 
         self.sepconv1 = SeparableConv2d(752, 2256, kernel_size=5, stride=strides, padding=2)
-        # if 1 in normaliztion_pos:
+
         self.norm1 = nn.BatchNorm2d(2256)
 
-
-        # if 2 in activation_pos:
         self.act = nn.GELU()
 
         self.sepconv2 = SeparableConv2d(2256, 752, kernel_size=5, stride=strides, padding=2)
-        # if 2 in normaliztion_pos:
-        self.norm2 = nn.BatchNorm2d(752)
 
+        self.norm2 = nn.BatchNorm2d(752)
 
         self.sepconv3 = SeparableConv2d(752, 752, kernel_size=5, stride=strides, padding=2)
 
@@ -160,7 +157,6 @@ class Block(nn.Module):
                 rep.append(nn.BatchNorm2d(outc))
 
         if strides != 1:
-            # rep.append(nn.MaxPool2d(3, strides, 1))
             rep.append(nn.MaxPool2d((3, 3), stride=1, padding=1))
             rep.append(timm.models.layers.BlurPool2d(out_channels, filt_size=3, stride=2))
 
