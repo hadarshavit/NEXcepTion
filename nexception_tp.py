@@ -17,9 +17,6 @@ __all__ = ['NEXcepTion']  # model_registry will add each entrypoint fn to this
 
 
 def _is_contiguous(tensor: torch.Tensor) -> bool:
-    # jit is oh so lovely :/
-    # if torch.jit.is_tracing():
-    #     return True
     if torch.jit.is_scripting():
         return tensor.is_contiguous()
     else:
@@ -60,15 +57,10 @@ class BottleneckBlock(nn.Module):
 
 
         self.sepconv1 = SeparableConv2d(dim, dim * 3, kernel_size=5, stride=strides, padding=2)
-        # if 1 in normaliztion_pos:
         self.norm1 = nn.BatchNorm2d(dim * 3)
-
-
-        # if 2 in activation_pos:
         self.act = nn.GELU()
 
         self.sepconv2 = SeparableConv2d(dim * 3, dim, kernel_size=5, stride=strides, padding=2)
-        # if 2 in normaliztion_pos:
         self.norm2 = nn.BatchNorm2d(dim)
 
 
