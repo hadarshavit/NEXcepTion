@@ -1,7 +1,6 @@
 from numpy import pad
 import timm.models.layers
 from torch import norm
-# from torch import R
 import torch.nn as nn
 from timm.models.registry import register_model
 from timm.models.layers import create_conv2d, SqueezeExcite, MixedConv2d, DropPath
@@ -99,17 +98,14 @@ class BottleneckBlock(nn.Module):
 
 
         self.sepconv1 = SeparableConv2d(512, 1536, kernel_size=5, stride=strides, padding=2)
-        # if 1 in normaliztion_pos:
+
         self.norm1 = nn.BatchNorm2d(1536)
 
-
-        # if 2 in activation_pos:
         self.act = nn.GELU()
 
         self.sepconv2 = SeparableConv2d(1536, 512, kernel_size=5, stride=strides, padding=2)
-        # if 2 in normaliztion_pos:
-        self.norm2 = nn.BatchNorm2d(512)
 
+        self.norm2 = nn.BatchNorm2d(512)
 
         self.sepconv3 = SeparableConv2d(512, 512, kernel_size=5, stride=strides, padding=2)
 
