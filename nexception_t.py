@@ -157,7 +157,6 @@ class Block(nn.Module):
                 rep.append(nn.BatchNorm2d(outc))
 
         if strides != 1:
-            # rep.append(nn.MaxPool2d(3, strides, 1))
             rep.append(nn.MaxPool2d((3, 3), stride=1, padding=1))
             rep.append(timm.models.layers.BlurPool2d(out_channels, filt_size=3, stride=2))
 
